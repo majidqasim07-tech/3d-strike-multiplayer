@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>3D Strike Multiplayer</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#101820;color:#f4f6f8;font-family:Arial,sans-serif}#game{position:relative;width:100vw;height:100dvh;overflow:hidden}canvas{display:block;width:100%;height:100%;touch-action:none}#menu{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(135deg,#101820ed,#172a35e8);padding:18px;z-index:5}.card{width:min(440px,100%);background:#17232c;border:1px solid #40515c;border-radius:18px;padding:24px;box-shadow:0 20px 60px #0008}.card h1{font-size:30px;letter-spacing:2px;margin:0 0 6px}.sub{color:#aebdc6;margin:0 0 20px}.field{width:100%;padding:13px;border-radius:9px;border:1px solid #53636e;background:#0e171d;color:white;margin:6px 0 12px;font-size:16px}.row{display:flex;gap:9px}.btn{border:0;border-radius:9px;padding:13px 15px;background:#e0a52d;color:#171717;font-weight:800;font-size:15px;cursor:pointer;flex:1}.btn.alt{background:#344550;color:#fff}.small{font-size:12px;color:#aebdc6;line-height:1.5;margin-top:14px}.hidden{display:none!important}#hud{position:absolute;top:12px;left:12px;right:12px;display:flex;justify-content:space-between;pointer-events:none;gap:8px} .badge{background:#101820c9;border:1px solid #ffffff30;border-radius:8px;padding:9px 12px;font-weight:bold;font-size:13px}#feed{position:absolute;top:65px;left:12px;font-size:13px;text-shadow:0 1px 3px #000;pointer-events:none}#board{position:absolute;top:65px;right:12px;background:#101820c9;padding:8px 12px;border-radius:8px;font-size:12px;min-width:120px}#mobile{position:absolute;bottom:20px;left:15px;right:15px;display:none;justify-content:space-between;align-items:end;pointer-events:none}#mobile button{pointer-events:auto;border:1px solid #ffffff60;background:#17232cbb;color:white;border-radius:50%;width:66px;height:66px;font-weight:bold;touch-action:none}#mobile .fire{width:82px;height:82px;background:#b94a32dd}#stick{display:grid;grid-template-columns:repeat(3,38px);grid-template-rows:repeat(3,38px);gap:3px;pointer-events:auto}#stick button{width:38px;height:38px;border-radius:8px;font-size:18px}#notice{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);background:#101820c9;padding:8px 12px;border-radius:8px;font-size:12px;white-space:nowrap;pointer-events:none}
+@media(max-width:700px){#mobile{display:flex}#board{top:62px}#feed{top:62px}#hud .badge{font-size:11px;padding:7px 8px}}
+</style>
+</head>
+<body>
+<div id="game">
+ <div id="hud" class="hidden"><div class="badge">HP: <span id="hp">100</span></div><div class="badge">ROOM: <span id="room">PUBLIC</span></div><div class="badge">KILLS: <span id="score">0</span></div></div>
+ <div id="feed"></div><div id="board" class="hidden"></div>
+ <div id="mobile"><div id="stick"><span></span><button data-move="forward">▲</button><span></span><button data-move="left">◀</button><button data-move="back">▼</button><button data-move="right">▶</button></div><button class="fire" id="fire">FIRE</button></div>
+ <div id="notice">WASD move · Mouse aim · Click shoot · Mobile touch controls</div>
+ <div id="menu"><div class="card"><h1>3D STRIKE</h1><p class="sub">Online multiplayer FPS · Up to 10 players</p>
+ <label for="name">Player name</label><input id="name" class="field" maxlength="16" placeholder="Enter your name" value="Player">
+ <div class="row"><button id="public" class="btn">Quick Match</button><button id="private" class="btn alt">Private Room</button></div>
+ <div id="privatebox" class="hidden"><label for="code">Room code (share with friends)</label><input id="code" class="field" maxlength="6" placeholder="e.g. TEAM7"><button id="joinprivate" class="btn">Join private room</button></div>
+ <p id="error" class="small"></p><p class="small">This is an early multiplayer prototype. A hosted server is required for friends to connect over the internet. Use a modern browser and a stable connection.</p>
+ </div></div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script type="module" src="/game.js"></script>
+</body></html>
